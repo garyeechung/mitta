@@ -132,3 +132,5 @@ dmypy.json
 # MISC
 .vscode/
 .devcontainer/
+mr-aoi-master/
+**/.DS_Store
