@@ -1,5 +1,6 @@
+import numpy as np
 import tensorflow as tf
-
+import tensorflow_addons as tfa
 
 class DualTransform:
 
@@ -69,8 +70,8 @@ class Rotate(DualTransform):
     identity_param = 0
 
     def forward(self, image, angle):
-        k = angle // 90 if angle >= 0 else (angle + 360) // 90
-        return tf.image.rot90(image, k)
+        # k = angle // 90 if angle >= 0 else (angle + 360) // 90
+        return tfa.image.rotate(image, np.pi * angle / 180)
 
     def backward(self, image, angle):
         return self.forward(image, -angle)
