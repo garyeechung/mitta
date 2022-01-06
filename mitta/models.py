@@ -38,7 +38,6 @@ def segmentation(
     contrast=None,
     add=None,
     mul=None,
-    # weight=None,
     merge=None,
     input_shape=None,
 ):
@@ -71,7 +70,6 @@ def segmentation(
     x = TTA(*tta.forward)(x)
     x = model(x)
     x = TTA(*tta.backward)(x)
-    # x = Weight(weight)(x)
     x = Merge(merge)(x)
     tta_model = Model(inp, x)
 
@@ -88,7 +86,6 @@ def classification(
     contrast=None,
     add=None,
     mul=None,
-    # weight=None,
     merge=None,
     input_shape=None,
 ):
@@ -121,7 +118,6 @@ def classification(
     x = Repeat(tta.n_transforms)(inp)
     x = TTA(*tta.forward)(x)
     x = model(x)
-    # x = Weight(weight)(x)
     x = Merge(merge)(x)
     tta_model = Model(inp, x)
 

@@ -43,49 +43,6 @@ class TTA(Layer):
         return self.apply_transforms(images)
 
 
-# class Weight(Layer):
-
-#     def __init__(self, type):
-#         super().__init__()
-#         self.type = type
-
-#     def build(self, input_shape):
-#         w_init = tf.ones_initializer()
-#         if self.type is None:
-#             self.theta = tf.Variable(
-#                 initial_value=w_init(input_shape),
-#                 dtype='float32',
-#                 trainable=False
-#             )
-#         elif self.type == 'ClassTTA':
-#             self.theta = tf.Variable(
-#                 initial_value=w_init(input_shape),
-#                 dtype='float32',
-#                 trainable=True
-#             )
-#         elif self.type == 'AugTTA':
-#             self.theta = tf.Variable(
-#                 initial_value=w_init((1, *input_shape[:-1])),
-#                 dtype='float32',
-#                 trainable=True
-#             )
-#             # self.theta = tf.matrix_diag(self.theta)
-
-#             # self.theta = tf.repeat(self.theta[..., np.newaxis], input_shape[-1], axis=-1)
-
-#             # self.theta = K.expand_dims(self.theta)
-#             # self.theta = K.repeat_elements(self.theta, input_shape[-1], axis=-1)
-#             # self.theta = tf.broadcast_to(self.theta, input_shape)
-#         else:
-#             raise ValueError(f'Wrong weight type {self.type}')
-
-#     def call(self, x):
-#         if self.type == 'AugTTA':
-#             return tf.matmul(self.theta, x)
-#         else:
-#             return tf.multiply(self.theta, x)
-
-
 class Merge(Layer):
 
     def __init__(self, type):
